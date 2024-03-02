@@ -40,7 +40,7 @@ class Encrypt():
         b = marshal.dumps(code)
         c = zlib.compress(b)
         d = base64.b64encode(c).decode('utf-8')
-        result = f"""exec(__import__("marshal").loads(__import__("zlib").decompress(__import__("base64").b64decode(b'{d[::-1]}'[::-1]))))"""
+        result = f"""exec(__import__("marshal").loads(__import__("zlib").decompress(__import__("base64").b64decode(b'{d[::-1]}'[::-1]))), globals())"""
         return result
 
 class Decrypt():
@@ -83,3 +83,4 @@ def Menu():
 if __name__ == '__main__':
     clear()
     Menu()
+
