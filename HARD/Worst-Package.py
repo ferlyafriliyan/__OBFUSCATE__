@@ -72,7 +72,7 @@ except Exception as e:__import__('logging').error(__import__('traceback').format
     b = bz2.compress(a)
 
     __OBFUSCATE__2 = f'''#i/usr/bin/python3.11
-try:exec(__import__('marshal').loads(__import__('bz2').BZ2Decompressor().decompress({repr(b[::-1])}[::-1])),globals())
+try:exec(__import__('marshal').loads(__import__('bz2').BZ2Decompressor().decompress({repr(b[::-1])}[::-1])), globals())
 except KeyboardInterrupt:print();__import__('sys').exit()
 except Exception as e:__import__('logging').error(__import__('traceback').format_exc())'''
 
@@ -81,7 +81,7 @@ except Exception as e:__import__('logging').error(__import__('traceback').format
     e = base64.b64encode(d).decode()
 
     __OBFUSCATE__3 = f'''#i/urs/bin/python3.11
-try:exec(__import__('marshal').loads(__import__('zlib').decompress(__import__('base64').b64decode({repr(e[::-1])}[::-1]))),globals())
+try:exec(__import__('marshal').loads(__import__('zlib').decompress(__import__('base64').b64decode({repr(e[::-1])}[::-1]))), globals())
 except KeyboardInterrupt:print();__import__('sys').exit()
 except Exception as e:__import__('logging').error(__import__('traceback').format_exc())'''
 
@@ -91,7 +91,7 @@ except Exception as e:__import__('logging').error(__import__('traceback').format
     i = base64.b64encode(h)
 
     __OBFUSCATE__4 = f'''#i/usr/bin/python3.11
-try:exec(__import__('marshal').loads(__import__('lzma').LZMADecompressor().decompress(__import__('bz2').BZ2Decompressor().decompress(__import__('base64').b64decode({repr(i[::-1])}[::-1])))),globals())
+try:exec(__import__('marshal').loads(__import__('lzma').LZMADecompressor().decompress(__import__('bz2').BZ2Decompressor().decompress(__import__('base64').b64decode({repr(i[::-1])}[::-1])))), globals())
 except KeyboardInterrupt:print();__import__('sys').exit()
 except Exception as e:__import__('logging').error(__import__('traceback').format_exc())'''
 
@@ -134,7 +134,7 @@ OBFUSCATED_BY = '@Ferly Afriliyan'
 
     __OBFUSCATE__6 = f'''
 __OBFUSCATE__BY = "Dapunta x Denventa."
-try:exec(__import__("marshal").loads(__import__("zlib").decompress(__import__("base64").b64decode({repr(u[::-1])}[::-1]))))
+try:exec(__import__("marshal").loads(__import__("zlib").decompress(__import__("base64").b64decode({repr(u[::-1])}[::-1]))), globals())
 except KeyboardInterrupt:print();__import__('sys').exit()
 except Exception as e:__import__('logging').error(__import__('traceback').format_exc())'''
 
