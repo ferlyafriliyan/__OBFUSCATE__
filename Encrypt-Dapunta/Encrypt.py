@@ -37,7 +37,8 @@ class Encrypt():
 
 
     def ExeCrypt(self, code):
-        b = marshal.dumps(code)
+    #    b = marshal.dumps(code)
+        b = marshal.dumps(compile(code, '', 'exec'))
         c = zlib.compress(b)
         d = base64.b64encode(c).decode('utf-8')
         result = f"""exec(__import__("marshal").loads(__import__("zlib").decompress(__import__("base64").b64decode(b'{d[::-1]}'[::-1]))), globals())"""
