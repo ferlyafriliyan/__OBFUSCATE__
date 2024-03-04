@@ -5,7 +5,6 @@ import lzma
 import base64
 import os
 import sys
-import platform
 
 def read_file():
     input_file = input("Input File: ")
@@ -15,7 +14,7 @@ def read_file():
 
 def Banner():
     os.system('cls' if 'win' in sys.platform.lower() else 'clear')
-    print(f"""
+    print("""
   ___ ___                  .___ ________ _____________________
  /   |   \_____ _______  __| _/ \_____  \\\______   \_   _____/
 /    ~    \__  \\\_  __ \/ __ |   /   |   \|    |  _/|    __)  
@@ -24,20 +23,26 @@ def Banner():
        \/      \/           \/          \/       \/     \/    
 """)
 
-def obfuscate_and_save():
-    content = read_file()
+def AskLoop():
+    return int(input('Berapa Lapis: '))
+
+def obfuscate_and_save(content, layers):
     # Compile the Python code
     compiled_code = compile(content, '', 'exec')
     # Marshal the compiled code
     marshaled_code = marshal.dumps(compiled_code)
-    # Compress using zlib
-    zlib_compressed = zlib.compress(marshaled_code)
-    # Compress using bz2
-    bz2_compressed = bz2.compress(zlib_compressed)
-    # Compress using lzma
-    lzma_compressed = lzma.compress(bz2_compressed)
-    # Build the final obfuscated code
-    __OBFUSCATE__1 = f'''#i/urs/bin/python3.11
+
+    # Apply obfuscation layers
+    for _ in range(layers):
+        # Compress using zlib
+        zlib_compressed = zlib.compress(marshaled_code)
+        # Compress using bz2
+        bz2_compressed = bz2.compress(zlib_compressed)
+        # Compress using lzma
+        lzma_compressed = lzma.compress(bz2_compressed)
+        marshaled_code = lzma_compressed
+
+    __OBFUSCATE__1 = f'''#i/urs/bin/python3.12.2
 try:
 	__Minh_x_Uyen__=locals();__Botname__='@ChatGPT_bot';__Date_Obf__='2024-02-07 - Admin (UTC)';__Mode_ENC__='3.11.6 -> (main) - version: 1.0.2';__OBFUSCATION_BY__='MinhNguyen2412_x_NgocUyen1907'
 	class PyObject:
@@ -80,7 +85,7 @@ except Exception as e:__import__('logging').error(__import__('traceback').format
     d = zlib.compress(c)
     e = base64.b64encode(d).decode()
 
-    __OBFUSCATE__3 = f'''#i/urs/bin/python3.11
+    __OBFUSCATE__3 = f'''#i/urs/bin/python3.12.2
 try:exec(__import__('marshal').loads(__import__('zlib').decompress(__import__('base64').b64decode({repr(e[::-1])}[::-1]))), globals())
 except KeyboardInterrupt:print();__import__('sys').exit()
 except Exception as e:__import__('logging').error(__import__('traceback').format_exc())'''
@@ -102,37 +107,16 @@ except Exception as e:__import__('logging').error(__import__('traceback').format
     m = base64.b32hexencode(l)
     n = zlib.compress(m, level=zlib.Z_BEST_COMPRESSION)
 
-    anti_skid = f'''
-
-try:
-    if OBFUSCATED_BY != '@Ferly Afriliyan':
-        int('skid')
-except:
-    input("Gak usah Direcode Goblok !")
-    __import__('sys').exit()
-
-'''
-    skid_ = compile(anti_skid, '', 'exec')
-    o = marshal.dumps(skid_)
-    p = bz2.compress(o)
-    q = base64.b32hexencode(p)
-    r = zlib.compress(q, level=zlib.Z_BEST_COMPRESSION)
-
-    obfuscate_skid = f'''
-eval(__import__('marshal').loads(__import__('_bz2').BZ2Decompressor().decompress(__import__('base64').b32hexdecode(__import__('zlib').decompress({repr(r[::-1])}[::-1])))), globals())'''
-    
-    __OBFUSCATE__5 = f'''
-OBFUSCATED_BY = '@Ferly Afriliyan'
-# try:
-# 	if OBFUSCATED_BY!='@Ferly Afriliyan':int('skid')
-# except:input('Gak usah Direcode Goblok !');__import__('sys').exit()
-{obfuscate_skid};eval(__import__('marshal').loads(__import__('_bz2').BZ2Decompressor().decompress(__import__('base64').b32hexdecode(__import__('zlib').decompress({repr(n[::-1])}[::-1])))), globals())'''
+    __OBFUSCATE__5 = f'''#i/urs/bin/python3.12.2
+try:exec(__import__('marshal').loads(__import__('_bz2').BZ2Decompressor().decompress(__import__('base64').b32hexdecode(__import__('zlib').decompress({repr(n[::-1])}[::-1])))), globals())
+except KeyboardInterrupt:print();__import__('sys').exit()
+except Exception as e:__import__('logging').error(__import__('traceback').format_exc())'''
 
     s = marshal.dumps(compile(__OBFUSCATE__5.encode(), '', 'exec'))
     t = zlib.compress(s)
     u = base64.b64encode(t).decode('utf-8')
 
-    __OBFUSCATE__6 = f'''
+    __OBFUSCATE__6 = f'''#i/urs/bin/python3.12.2
 __OBFUSCATE__BY = "Dapunta x Denventa."
 try:exec(__import__("marshal").loads(__import__("zlib").decompress(__import__("base64").b64decode({repr(u[::-1])}[::-1]))), globals())
 except KeyboardInterrupt:print();__import__('sys').exit()
@@ -143,7 +127,7 @@ except Exception as e:__import__('logging').error(__import__('traceback').format
     u = bz2.compress(t)
     v = lzma.compress(u)
 
-    __OBFUSCATE__7 = f'''#i/urs/bin/python3.11
+    __OBFUSCATE__7 = f'''#i/urs/bin/python3.12.2
 try:
 	__Minh_x_Uyen__=locals();__Botname__='@ChatGPT_bot';__Date_Obf__='2024-02-07 - Admin (UTC)';__Mode_ENC__='3.11.6 -> (main) - version: 1.0.2';__OBFUSCATION_BY__='MinhNguyen2412_x_NgocUyen1907'
 	class PyObject:
@@ -182,7 +166,9 @@ except Exception as e:__import__('logging').error(__import__('traceback').format
 if __name__ == '__main__':
     try:
         Banner()
-        obfuscate_and_save()
+        content = read_file()
+        layers = AskLoop()
+        obfuscate_and_save(content, layers)
     except KeyboardInterrupt:
         print()
         __import__('sys').exit()
