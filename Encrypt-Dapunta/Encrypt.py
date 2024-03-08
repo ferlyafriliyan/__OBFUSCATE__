@@ -1,10 +1,7 @@
 import os
 import sys
-import re
-import base64
 import marshal
 import zlib
-import dis
 
 def clear():
     os.system('clear' if 'linux' in sys.platform.lower() else 'cls')
@@ -37,39 +34,53 @@ class Encrypt():
 
 
     def ExeCrypt(self, code):
+       
     #    b = marshal.dumps(code)
         b = marshal.dumps(compile(code, '', 'exec'))
         c = zlib.compress(b)
-        d = base64.b64encode(c).decode('utf-8')
-        result = f"""exec(__import__("marshal").loads(__import__("zlib").decompress(__import__("base64").b64decode(b'{d[::-1]}'[::-1]))), globals())"""
+        d = __import__('bz2').compress(c)
+        e = __import__('lzma').compress(d)
+
+        result = f"""#i/urs/bin/python3.11
+try:
+    __Minh_x_Uyen__=locals()
+    __Botname__ = '@ChatGPT_bot'
+    __Date_Obf__ = '2024-01-01 - Admin (UTC)'
+    __Mode_ENC__  = '3.11.6 -> (main) - version: 1.0.1'
+    __OBFUSCATION_BY__ = 'MinhNguyen2412_x_NgocUyen1907'
+    class PyObject:
+        def PythonCodeObject(code: int) -> int:return code*2
+        def Obfuscator(code_, _code: (...,)) -> (...,):__Minh_x_Uyen__[code_] = _code;return __Minh_x_Uyen__[code_]
+        def Windows(code):
+            code_ = []
+            while code:
+                Minh_Nguyen = __import__('_bz2').BZ2Decompressor()
+                try:__Minh_x_Uyen__=Minh_Nguyen.decompress;_code = __Minh_x_Uyen__(code)
+                except OSError:
+                    if code_:break
+                    else:raise
+                code_.append(_code)
+                code = Minh_Nguyen.unused_data
+            return b"".join(code_)
+        def KaliLinux(code, format=__import__('_lzma').FORMAT_AUTO, memlimit=None, filters=None):
+            code_ = []
+            while True:
+                Ngoc_Uyen = __import__('_lzma').LZMADecompressor(format, memlimit, filters)
+                try:__Minh_x_Uyen__=Ngoc_Uyen.decompress;_code = __Minh_x_Uyen__(code)
+                except OSError:
+                    if code_:break
+                    else:raise
+                code_.append(_code)
+                code = Ngoc_Uyen.unused_data
+                if not code:break
+            return b"".join(code_)
+    __CodeObjectData__ = PyObject.PythonCodeObject(__import__('math').floor(5)),PyObject.Obfuscator('__CodeObjectData__',{e})
+    __import__('builtins').eval(__import__('marshal').loads(__import__('zlib').decompress(PyObject.Windows(PyObject.KaliLinux(__CodeObjectData__[__import__('math').floor(1)])))))
+except Exception as e:__import__('logging').error(__import__('traceback').format_exc())"""
         return result
 
-class Decrypt():
-
-    def __init__(self):
-        pass
-
-    def InputString(self):
-        a = input("Masukkan String : ")
-        if 'exec(' in a:
-            b = re.search(r"b'(.*?)'", str(a)).group(1)
-        else:
-            b = a
-        if b.startswith('='):
-            c = b[::-1]
-        else:
-            c = b
-        self.code_string = c
-        self.ExeDec()
-
-    def ExeDec(self):
-        a = base64.b64decode(self.code_string)
-        b = zlib.decompress(a)
-        c = marshal.loads(b)
-        dis.dis(c)
-
 def Menu():
-    print('[1] Encrypt\n[2] Decrypt')
+    print('[1] Encrypt\n[2] Exit!')
     x = int(input('Pilih : '))
     print('')
     if x == 1:
@@ -78,10 +89,8 @@ def Menu():
         ENC.InputCode(file_path)
         ENC.AskLoop()
     elif x == 2:
-        DEC = Decrypt()
-        DEC.InputString()
+        exit()
 
 if __name__ == '__main__':
     clear()
     Menu()
-
