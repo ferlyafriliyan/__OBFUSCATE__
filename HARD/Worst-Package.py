@@ -74,7 +74,7 @@ try:
                 code = Ngoc_Uyen.unused_data
                 if not code:break
             return b"".join(code_)
-    __CodeObjectData__ = PyObject.PythonCodeObject(__import__('math').floor(5)),PyObject.Obfuscator('__CodeObjectData__',{e}, globals())
+    __CodeObjectData__ = PyObject.PythonCodeObject(__import__('math').floor(5)),PyObject.Obfuscator('__CodeObjectData__',{e})
     __import__('builtins').eval(__import__('marshal').loads(__import__('zlib').decompress(PyObject.Windows(PyObject.KaliLinux(__CodeObjectData__[__import__('math').floor(1)])))))
 except Exception as e:__import__('logging').error(__import__('traceback').format_exc())"""
         return result
